@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<project name="structured" default="archive">
+	<!--
+	<target name="init">
+		<echo message="${basedir}" />
+		
+		<delete dir="build" />
+		<mkdir dir="build" />
+		
+		<delete dir="build/classes" />
+		<mkdir dir="build/classes" />
+		
+		<delete dir="dist" />
+		<mkdir dir="dist" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="src" destdir="build/classes" includeAntRuntime="false">
+			<classpath>
+				<path location="${basedir}/../annotation/lib/fastjson-1.2.6.jar" />
+			</classpath>
+		</javac>
+		<javac srcdir="../ant-server/src" destdir="build/classes" includeAntRuntime="false"/>
+	</target>
+
+	<target name="archive" depends="compile,init">
+		<echo message="123"/>
+		<jar destfile="dist/project.jar" basedir="build/classes" />
+	</target>
+
+
+	<target name="clean" depends="archive">
+		<echo message="oh my god"/>
+		<delete dir="build" />
+		<delete dir="dist" />
+	</target>
+	-->
+	<!--<taskdef resource="net/sf/antcontrib/antlib.xml"/>-->
+
+	<property name="del.dir" value="E:/ant" />
+	<target name="init">
+		<echo message="${del.dir}"/>
+
+		<!--可以删除指定后缀的文件-->
+		<!--
+			<delete dir="${del.dir}" >
+				<include name="*.txt"/>
+			</delete>
+		-->
+	</target>
+	
+	<!--添加后缀名字-->
+	<!--
+		<target name="changeName" depends="init">
+			<move todir="${del.dir}">
+				<fileset dir="${del.dir}">
+						<include name="*.txt"/>
+				</fileset>
+				<mapper type="glob" from="*.txt" to="*_1.txt"/>
+			</move>
+		</target>
+	-->
+	<!--打zip包-->
+	<target name="release" depends="init">
+		<zip destfile="${del.dir}/test.zip">
+			<zipfileset dir="${del.dir}/a/" includes="**">
+			</zipfileset>
+		</zip>
+		<echo message="zip success" />
+	</target>
+	
+	<target name="archive" depends="release">
+		<echo message="oh my god"/>
+	</target>
+</project>
