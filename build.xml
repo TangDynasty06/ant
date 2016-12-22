@@ -38,6 +38,8 @@
 	<!--<taskdef resource="net/sf/antcontrib/antlib.xml"/>-->
 
 	<property name="del.dir" value="E:/ant" />
+	<property name="target.dir" value="E:/target" />
+	
 	<target name="init">
 		<echo message="${del.dir}"/>
 
@@ -61,15 +63,25 @@
 		</target>
 	-->
 	<!--打zip包-->
-	<target name="release" depends="init">
-		<zip destfile="${del.dir}/test.zip">
-			<zipfileset dir="${del.dir}/a/" includes="**">
-			</zipfileset>
-		</zip>
-		<echo message="zip success" />
+	<!--
+		<target name="release" depends="init">
+			<zip destfile="${del.dir}/test.zip">
+				<zipfileset dir="${del.dir}/a/" includes="**">
+				</zipfileset>
+			</zip>
+			<echo message="zip success" />
+		</target>
+	-->
+	
+	<!--测试mapper flatten 属性-->
+	<target name="test">
+		<copy todir="${target.dir}">
+			<fileset dir="${del.dir}" includes="*.txt"/>
+			<mapper type="flatten" />
+		</copy>
 	</target>
 	
-	<target name="archive" depends="release">
+	<target name="archive" depends="test">
 		<echo message="oh my god"/>
 	</target>
 </project>
